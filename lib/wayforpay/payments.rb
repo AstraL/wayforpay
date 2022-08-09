@@ -44,5 +44,11 @@ module Wayforpay
       request_params = Constants.get_client_params.merge(attrs)
       Wayforpay::Request.(Constants::GET_CLIENT_ENCRYPT_FIELDS, request_params)
     end
+
+    # required attrs: orderReference
+    def self.check_status(attrs = {})
+      request_params = Constants.check_status_params.merge(attrs)
+      Wayforpay::Request.(Constants::CHECK_STATUS_ENCRYPT_FIELDS, request_params)
+    end  
   end
 end

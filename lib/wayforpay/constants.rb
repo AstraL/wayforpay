@@ -13,6 +13,7 @@ module Wayforpay
     GET_CLIENT_ENCRYPT_FIELDS = %i[merchantAccount recToken card].freeze
     PURCHASE_FORM_ENCRYPT_FIELDS = %i[merchantAccount merchantDomainName orderReference orderDate amount currency productName productCount productPrice].freeze
     PURCHASE_RESPONSE_ENCRYPT_FIELDS = %i[merchantAccount orderReference amount currency authCode cardPan transactionStatus reasonCode].freeze
+    CHECK_STATUS_ENCRYPT_FIELDS = %i[merchantAccount orderReference]
 
 
     HOLD_ATTRS = {
@@ -59,6 +60,11 @@ module Wayforpay
       merchantAuthType: 'SimpleSignature'
     }.freeze
 
+    CHECK_STATUS_ATTRS = {
+      transactionType:"CHECK_STATUS",
+      apiVersion: 1
+    }
+
     def self.hold_params
       HOLD_ATTRS.merge(
         merchantAccount: Wayforpay.merchant_account,
@@ -101,6 +107,10 @@ module Wayforpay
         merchantAccount: Wayforpay.merchant_account,
         merchantDomainName: Wayforpay.merchant_domain_name
       )
+    end
+
+    def self.check_status_params
+      CHECK_STATUS_ATTRS.merge(merchantAccount: Wayforpay.merchant_account)
     end
   end
 end
