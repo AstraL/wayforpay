@@ -3,6 +3,7 @@ require 'uri'
 module Wayforpay
   module Constants
     URL = URI.parse('https://api.wayforpay.com/api').freeze
+    VERIFY_URL = URI.parse('https://secure.wayforpay.com/verify').freeze
 
     HOLD_ENCRYPT_FIELDS = %i[merchantAccount merchantDomainName orderReference orderDate amount currency productName productCount productPrice].freeze
     REFUND_ENCRYPT_FIELDS = %i[merchantAccount orderReference amount currency].freeze
@@ -35,7 +36,6 @@ module Wayforpay
     }.freeze
 
     VERIFY_ATTRS = {
-      transactionType: 'VERIFY',
       apiVersion: 1
     }.freeze
 
